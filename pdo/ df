@@ -1,0 +1,32 @@
+if ( isset($_POST['make']) ) {
+  if ( strlen($_POST['make']) < 1){
+    $failure = "Make is required";
+  } else {
+    $sql1 = "INSERT INTO autos (make) VALUES (:make)";
+    $stmt1 = $pdo->prepare($sql1);
+    $stmt1->execute(array(
+          ':make' => $_POST['make']));
+  }
+}
+if ( isset($_POST['year']) ) { //&& isset($_POST['mileage']) ){
+  if ( is_numeric($_POST['year']) ){// elseif ( is_numeric($_POST['mileage']) ){
+    $sql2 = "INSERT INTO autos (year) VALUES (:year)";
+    $stmt2 = $pdo->prepare($sql2);
+    $stmt2->execute(array(
+            ':year' => ($_POST['year'])));
+          //  ':mileage' => ($_POST['mileage'])));
+  } else {
+    $failure = "Mileage and year must be numeric";
+  }
+}
+if ( isset($_POST['mileage']) ){ //&& isset($_POST['mileage']) ){
+  if ( is_numeric($_POST['mileage']) ){// elseif ( is_numeric($_POST['mileage']) ){
+    $sql3 = "INSERT INTO autos (mileage) VALUES (:mileage)";
+    $stmt3 = $pdo->prepare($sql3);
+    $stmt3->execute(array(
+            ':mileage' => ($_POST['mileage'])));
+          //  ':mileage' => ($_POST['mileage'])));
+  } else {
+    $failure = "Mileage and year must be numeric";
+  }
+}
